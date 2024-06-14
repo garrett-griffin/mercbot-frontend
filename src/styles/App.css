@@ -1,0 +1,108 @@
+/* App.css */
+.home {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.App {
+  display: grid;
+  grid-template-areas:
+    "navbar navbar"
+    "sidebar content";
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 60px 1fr;
+  background-color: #282c34;
+  color: white;
+}
+
+.navbar {
+  grid-area: navbar;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #20232a;
+  color: white;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  width: 200px;
+  background-color: #1e1e1e;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 60px;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.content {
+  grid-area: content;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown {
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.account-select-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.account-select-container label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #61dafb;
+}
+
+.account-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: #61dafb;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.account-select:hover,
+.account-select:focus {
+  border-color: #61dafb;
+}
+
+@media (max-width: 768px) {
+  .App {
+    grid-template-areas:
+      "navbar"
+      "sidebar"
+      "content";
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px auto 1fr;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+    box-shadow: none;
+    margin-top: 60px; /* Adjust for navbar height */
+  }
+
+  .content {
+    margin-left: 0;
+  }
+}

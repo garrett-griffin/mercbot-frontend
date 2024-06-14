@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
+import { observer } from 'mobx-react-lite';
+import config from '../config';
+import { StoreContext } from '../store';
+import '../styles/Auth.css';
 
-const Register = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+const Register = observer(() => {
+    const store = useContext(StoreContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/auth/register', { username, password });
-            setSuccess('Registration successful! Please log in.');
-            setUsername('');
-            setPassword('');
+            await axios.post(`${config.apiUrl}/auth/register`, { username: store.username, password: store.password });
+            store.success = 'Registration successful! Please log in.';
+            store.username = '';
+            store.password = '';
         } catch (error) {
             console.error(error);
-            setError('Registration failed. Try again.');
+            store.error = 'Registration failed. Try again.';
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label>Username</label>
-                <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            {success && <div style={{ color: 'green' }}>{success}</div>}
-            <button type="submit">Register</button>
-        </form>
+        <div className="auth-container">
+            <form onSubmit={handleSubmit} className="auth-form">
+                <h2>Register</h2>
+                <div className="form-group">
+                    <label>Username</label>
+                    <input type="text" value={store.username} onChange={(e) => store.username = e.target.value} />
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" value={store.password} onChange={(e) => store.password = e.target.value} />
+                </div>
+                {store.error && <div className="form-error">{store.error}</div>}
+                {store.success && <div className="form-success">{store.success}</div>}
+                <button type="submit" className="auth-button">Register</button>
+            </form>
+        </div>
     );
-};
+});
 
 export default Register;
