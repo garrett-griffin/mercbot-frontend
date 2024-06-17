@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import '../../styles/App.css'; // Ensure the main styles are applied
 import { observer } from 'mobx-react-lite';
@@ -15,9 +16,10 @@ const Wrapper = observer(({ children }) => {
                 {store.isLoggedIn && (
                     <nav>
                         <ul>
-                            <li><a href="/dashboard">Dashboard</a></li>
-                            <li><a href="/settings">Settings</a></li>
-                            <li><a href="/support">Support</a></li>
+                            <li><Link to="/profile">Profile</Link></li>
+                            <li><Link to="/dashboard">Dashboard</Link></li>
+                            <li><Link to="/settings">Settings</Link></li>
+                            <li><Link to="/support">Support</Link></li>
                         </ul>
                     </nav>
                 )}

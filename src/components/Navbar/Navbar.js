@@ -20,7 +20,7 @@ const Navbar = observer(() => {
             <div className="nav-right">
                 {store.isLoggedIn ? (
                     <>
-                        <span className="nav-username">{store.username}</span>
+                        <Link to="/profile" className="nav-username">{store.username}</Link>
                         <span className="nav-link" onClick={handleLogout}>Logout</span>
                     </>
                 ) : (

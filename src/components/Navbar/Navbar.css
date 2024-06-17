@@ -39,7 +39,14 @@
 }
 
 .nav-username {
-    margin-right: 1rem;
+    margin-left: 1rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-username:hover {
+    color: #61dafb; /* Optional: Change color on hover for better visibility */
 }
 
 @media (max-width: 768px) {
@@ -55,7 +62,7 @@
         width: 100%; /* Full width on mobile */
     }
 
-    .nav-link {
+    .nav-link, .nav-username {
         margin-left: 0;
         margin-top: 0.5rem;
     }
