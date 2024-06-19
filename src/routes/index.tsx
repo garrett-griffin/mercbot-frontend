@@ -1,8 +1,22 @@
+/* eslint-disable react-refresh/only-export-components */
 import { lazy } from 'react'
 import { Navigate, RouteProps } from 'react-router-dom'
 
 //No Login Required
 const Home = lazy(() => import('@/pages/apps/Home'))
+
+const publicRoutes: RoutesProps[] = [
+	{
+		path: '/',
+		name: 'Home Page',
+		element: <Navigate to="/home" />,
+	},
+	{
+		path: '/home',
+		name: 'Home',
+		element: <Home />,
+	}
+]
 
 //Dashboards
 const AnalyticsDashboard = lazy(() => import('@/pages/dashboards/Analytics'))
@@ -123,11 +137,6 @@ export type RoutesProps = {
 }
 
 const dashboardRoutes: RoutesProps[] = [
-	{
-		path: '/',
-		name: 'Home Page',
-		element: <Navigate to="/home" />,
-	},
 	{
 		path: '/home',
 		name: 'Home',
@@ -646,6 +655,12 @@ const allAdminRoutes = [
 	...allUiRoutes,
 ]
 
-const allBlankRoutes = [...authRoutes]
+const allBlankRoutes = [
+	...authRoutes
+]
 
-export { allAdminRoutes, allBlankRoutes }
+const allPublicRoutes = [
+	...publicRoutes
+];
+
+export { allAdminRoutes, allBlankRoutes, allPublicRoutes }
