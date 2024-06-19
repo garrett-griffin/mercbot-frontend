@@ -31,8 +31,8 @@ const GameAccounts = () => {
                     }
                 })
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                .catch(error => {
-                    toast.error('Error deleting game account');
+                .catch(() => {
+                    toast.error('Error deleting game account.');
                 });
         }
     };
